@@ -1,0 +1,6 @@
+@ChangeEntityIdentityBehavior_HostAddress = http://localhost:5079
+
+GET {{ChangeEntityIdentityBehavior_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
