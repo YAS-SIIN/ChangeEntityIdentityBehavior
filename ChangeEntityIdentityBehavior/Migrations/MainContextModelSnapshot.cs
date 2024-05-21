@@ -24,7 +24,6 @@ namespace ChangeEntityIdentityBehavior.Migrations
             modelBuilder.Entity("ChangeEntityIdentityBehavior.Domain.Entities.Test", b =>
                 {
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
