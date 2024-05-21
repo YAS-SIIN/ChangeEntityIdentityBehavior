@@ -9,9 +9,8 @@ namespace ChangeEntityIdentityBehavior.Infrastructure.Data;
 public class MainContext : DbContext 
 {
 
-    public MainContext() : base()
+    public MainContext(DbContextOptions options) : base(options)
     {
-
     }
     #region Test    
     public DbSet<Test> Tests { get; set; }
@@ -21,12 +20,14 @@ public class MainContext : DbContext
     {
         //var mutableProperties = modelBuilder.Model.GetEntityTypes().SelectMany(e => e.GetProperties().Where(p => p.Name == "Status"));
 
-        #region Employee 
+        #region Test 
+        var testBuilder = modelBuilder.Entity<Test>();
+        testBuilder.ToTable("Test");
+        testBuilder.Property(c => c.Id).ValueGeneratedOnAdd();
+        testBuilder.Property(c => c.Name).HasMaxLength(100);
+        testBuilder.Property(c => c.Description).HasMaxLength(200);
 
         #endregion
-        var testBuilder = modelBuilder.Entity<Test>();
-        testBuilder.ToTable("Employee", schema: "EMP");
-        testBuilder.Property(c => c.Id).ValueGeneratedOnAdd();
 
         modelBuilder.ApplyConfigurationsFromAssembly(typeof(MainContext).Assembly); base.OnModelCreating(modelBuilder);
     }
